@@ -23,4 +23,18 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutReservation statut;
+
+    // ===== Reservation → Client (côté propriétaire) =====
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Client client;
+
+    // ===== Reservation → Vehicule (côté propriétaire) =====
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vehicule vehicule;
+
+    // ===== Reservation ↔ Contrat (OneToOne, côté inverse, cascade ALL) =====
+    @OneToOne(mappedBy = "reservation",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private Contrat contrat;
 }

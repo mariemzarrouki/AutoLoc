@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "contrat")
@@ -23,4 +25,15 @@ public class Contrat {
 
     @Column(nullable = false)
     private Boolean valide;
+
+    // ===== Contrat → Paiement (côté inverse, composition) =====
+    @OneToMany(mappedBy = "contrat",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<Paiement> paiements = new ArrayList<>();
+
+    // ===== Contrat ↔ Reservation (OneToOne, côté propriétaire) =====
+    @OneToOne(fetch = FetchType.LAZY)
+    private Reservation reservation;
 }

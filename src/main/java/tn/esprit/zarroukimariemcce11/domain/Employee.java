@@ -21,4 +21,8 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private RoleEmployee role;
+
+    // ===== Employee → Agence (côté propriétaire) =====
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Agence agence;
 }

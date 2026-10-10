@@ -21,4 +21,8 @@ public class Maintenance {
 
     @Column(length = 500)
     private String description;
+
+    // ===== Maintenance → Vehicule (côté propriétaire) =====
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vehicule vehicule;
 }
