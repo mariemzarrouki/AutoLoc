@@ -9,6 +9,7 @@
 - Justification : composition — un paiement n'existe pas sans contrat.
 
 ## Reservation ↔ Contrat
+![img.png](img.png)
 - Type : @OneToOne (bidirectionnel)
 - Côté propriétaire : Contrat (colonne `reservation_id_reservation`)
 - Fetch : LAZY
